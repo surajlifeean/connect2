@@ -1,18 +1,25 @@
+
+
+
  <div class="row profile">
 		<div class="col-md-4">
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
 				<div class="profile-userpic">
-					<img src="http://localhost/connect2/images/image.jpg" class="img-responsive" alt="">
+					<img src="http://localhost/connect2/images/<?php echo $_SESSION['image_name'] ?>" class="img-responsive" alt="">
 				</div>
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name">
-						Marcus Doe
+						 <?php
+       					 echo $_SESSION['user_name'];
+       					   ?>
 					</div>
 					<div class="profile-usertitle-job">
-						Developer
+						 <?php
+       					 echo $_SESSION['profession'];
+       					   ?>
 					</div>
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
@@ -28,7 +35,31 @@
 						<li class="active">
 							<a href="#">
 							<i class="glyphicon glyphicon-home"></i>
-							Overview </a>
+							
+
+								Friend Requests
+								<?php
+
+								include('friendrequest.php');
+
+
+?>
+<span class = "badge">
+
+<?php 
+echo count($allrequests);
+?>
+
+
+</span>
+
+
+
+
+							
+
+
+							 </a>
 						</li>
 						<li>
 							<a href="#">

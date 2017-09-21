@@ -9,7 +9,7 @@
 	$conn=new PDO("mysql:host=$sname; dbname=connecttwo",$username,$pwd);
 	$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-	echo "success";
+	// echo "success";
 
 	}
 	catch(PDOException $e){

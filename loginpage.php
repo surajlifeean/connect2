@@ -1,7 +1,13 @@
 <?php 
 
-session_start();
+
 include 'bootstraplinks.php';
+
+if(isset($_SESSION['user_id'])){
+
+	header('Location:http://localhost/connect2/view.php');
+
+}
 
 ?>
 

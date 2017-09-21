@@ -45,7 +45,15 @@ include('navbar.php');
 						User Name:<input type="text" name="name" class="form-control" placeholder="Enter a Unique User Name"><br>
 
 
-						Email Id:<input type="text" name="email" id="email" class="form-control" placeholder="Enter Your Email Id"><br>
+						Email Id:<input type="text" name="email" id="email" class="form-control" placeholder="Enter Your Email Id">
+						<?php 
+						 if(isset($_SESSION['emailerror'])){
+
+						 	echo $_SESSION['emailerror'];
+						 	}
+						 	?>
+
+						<br>
 
 
 						Gender:<select name="gender" class="form-control">
@@ -54,12 +62,19 @@ include('navbar.php');
 
 							</select><br>
 
+						Profession:<input type="text" name="profession" class="form-control" placeholder="What do u do?"><br>
+
+
 						Password:<input type="Password" name="password" class="form-control" placeholder="Enter Password"><br>
 
 
 						Confirm Password:<input type="Password" name="cpassword" class="form-control" placeholder="Confirm Your Password"><br>
 
-						Profile Image:<input type="file" name="profilepic"><br>
+						Profile Image:<input type="file" name="profilepic"><?php
+				include('message.php');
+
+?>
+<br>
 
 						<button type="submit" class="btn btn-primary">Submit</button>
 
@@ -68,6 +83,10 @@ include('navbar.php');
 
 				<a href="http://localhost/connect2/loginpage.php"><b>Already A User! Log In.!</b></a>
 				</div>
+				<br>
+
+
+
 </div>
 				<script type="text/javascript">
 					

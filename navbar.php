@@ -21,17 +21,34 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://localhost/connect2/loginpage.php">Login/Register</a></li>
+       
+
+        <?php
+        if(isset($_SESSION['user_name'])){
+          ?>
+        
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello, <?php
+        echo $_SESSION['user_name']
+          ?>!
+          <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="http://localhost/connect2/view.php">Dashboard</a></li>
+            <li><a href="http://localhost/connect2/logout.php">Logout</a></li>
           </ul>
         </li>
+
+<?php
+   }
+   else{
+   ?>
+    <li><a href="http://localhost/connect2/loginpage.php">Login/Register</a></li>
+
+    <?php
+  }
+  ?>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

@@ -1,10 +1,3 @@
-<?php
-
-
-
-
-
-?>
 
 <html>
 		<head>
@@ -12,6 +5,10 @@
 
 
 				include('bootstraplinks.php');
+
+				include('connection.php');
+
+				// var_dump($_SESSION);
 
 
 
@@ -260,7 +257,14 @@ User Profile Sidebar by @keenthemes
 A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
 Licensed under MIT
 -->
+
+
+
+				
+
 <?php
+
+				include('success.php');
 				include('sidedashbar.php');
 
 ?>   
@@ -272,6 +276,12 @@ Licensed under MIT
 				<div class="col-md-3">
 
 					<?php
+
+
+							$stmt=$conn->prepare("select * from user where name NOT IN ('".$_SESSION['user_name']."')order by name desc");
+							$stmt->execute();
+							$allusers=$stmt->fetchAll();
+
 
 
 							include('peopleonline.php');
@@ -340,6 +350,21 @@ $(function () {
 });
 
 
+
+
+
+</script>
+
+
+<script>
+
+$('.closemessage').click(function(){
+
+
+	document.getElementById("message_area").innerHTML=<?php $_SESSION['success']=NULL?> " " ;
+
+
+});
 
 
 

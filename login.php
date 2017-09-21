@@ -2,6 +2,7 @@
 
 session_start();
 
+
 require('connection.php');
 	
 	$email=$_REQUEST['email'];
@@ -21,7 +22,12 @@ require('connection.php');
 		# code...
 
 		if($pwd==$data['pwd']){
-			session_destroy();
+			
+			$_SESSION['user_name']=$data['name'];
+			$_SESSION['user_id']=$data['id'];
+			$_SESSION['image_name']=$data['profilepic'];
+			$_SESSION['profession']=$data['profession'];
+			
 			header('Location:view.php');
 
 
