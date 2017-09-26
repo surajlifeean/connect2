@@ -9,13 +9,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://localhost/connect2/index.php">CoNNect2</a>
+      <a class="navbar-brand active" href="http://localhost/connect2/index.php">CoNNect2</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">About Us <span class="sr-only">(current)</span></a></li>
+        <li ><a href="#">About Us <span class="sr-only">(current)</span></a></li>
         <li><a href="#">How It Works!</a></li>
         
       </ul>

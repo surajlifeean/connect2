@@ -1,19 +1,11 @@
 
-<html>
-		<head>
-			<?php
+<head>
+<?php
 
 
-				include('bootstraplinks.php');
-
-				include('connection.php');
-
-				// var_dump($_SESSION);
-
-
-
-          ?>
-
+	include('bootstraplinks.php');
+	include('connection.php');
+?>
 
 
           <style>
@@ -231,25 +223,51 @@ body {
 }
 
 
+/*
+the content for request sent content*/ 
+
+
+.modal.fade .modal-dialog {
+    transform: translate(0px, -25%);
+    transition: transform 0.3s ease-out 0s;
+}
+.modal.fade.in .modal-dialog {
+    transform: translate(0px, 0px);
+}
+
+.flyover {
+   left: 150%;
+   overflow: hidden;
+   position: fixed;
+   width: 50%;
+   opacity: 0.95;
+   z-index: 1050;
+   transition: left 0.6s ease-out 0s;
+}
+ 
+.flyover-centered {
+   top: 50%;
+   transform: translate(-50%, -50%);
+}
+
+.flyover.in {
+   left: 50%;
+}
+
 </style>
 
+</head>
+<body>
 
-		</head>
+	
 
-
-		<body>
-		<?php
-
-			include('navbar.php');
-
-		?>
-
-
+<?php 
+include('navbar.php');
+?>
 
 <div class="container">
-		<div class="row">
-
-				<div class="col-md-9">
+<div class="row">
+		<div class="col-md-9">
 
 				
 
@@ -262,115 +280,67 @@ body {
 ?>   
           <div class="col-md-8">
             <div class="profile-content">
-         Some user related content goes here...
-            </div>
+<?php
+            				include('showunaccepdetfriends.php');
+								
 
-				</div>
-
-    </div>
-
-
-				<div class="col-md-3">
-
-					<?php
+								foreach($result as $res){
+								?>	   
+								<div class="alert alert-success" role="alert"><?php echo getuserfromid($res['user_id'])  ?> Sent you a Request on <?php echo $res['request_sent_date']  ?>
 
 
+								<?php if(!$res['request_status']) {?>
+								<a href="acceptfriendreq.php?id=<?php echo $res['user_id']  ?>" class="btn btn-primary">     			 Accept
+            					</a>
+            					<?php } 
+            					else{ ?>
+
+            						<a href="unfriend.php?id=<?php echo $res['user_id']  ?>" class="btn btn-primary"> Unfriend
+            						</a>
+
+            					<?php } ?>
+            						<!-- <a href="#" class="btn btn-primary">     			
+            					 Reject
+            					</a> -->
+
+								</div>
+            					
+            					<?php }
+            					?>
+
+
+            </div><!-- profile content -->
+
+		</div><!-- col-md-8 -->
+
+    </div><!-- col-md-9 -->
+
+<div class="col-md-3">
+<?php
+
+
+	
 							$stmt=$conn->prepare("select * from user where name NOT IN ('".$_SESSION['user_name']."')order by name desc");
 							$stmt->execute();
 							$allusers=$stmt->fetchAll();
 
 
 
-							include('peopleonline.php');
+
+				include('peopleonline.php');
 
 
-
-					?>
-
-				</div>
-
-		</div>
+?>
 
 </div>
-
-
-
+</div>
 
 <?php
 
 
-include('footer.php');
+	include('footer.php');
 
-?>
-
-<script>
-$(function () {
-    /* BOOTSNIPP FULLSCREEN FIX */
-    if (window.location == window.parent.location) {
-        $('#back-to-bootsnipp').removeClass('hide');
-    }
-    
-    
-    $('[data-toggle="tooltip"]').tooltip();
-    
-    $('#fullscreen').on('click', function(event) {
-        event.preventDefault();
-        window.parent.location = "http://bootsnipp.com/iframe/4l0k2";
-    });
-    $('a[href="#cant-do-all-the-work-for-you"]').on('click', function(event) {
-        event.preventDefault();
-        $('#cant-do-all-the-work-for-you').modal('show');
-    })
-    
-    $('[data-command="toggle-search"]').on('click', function(event) {
-        event.preventDefault();
-        $(this).toggleClass('hide-search');
-        
-        if ($(this).hasClass('hide-search')) {        
-            $('.c-search').closest('.row').slideUp(100);
-        }else{   
-            $('.c-search').closest('.row').slideDown(100);
-        }
-    })
-    
-    $('#contact-list').searchable({
-        searchField: '#contact-list-search',
-        selector: 'li',
-        childSelector: '.col-xs-12',
-        show: function( elem ) {
-            elem.slideDown(100);
-        },
-        hide: function( elem ) {
-            elem.slideUp( 100 );
-        }
-    })
-});
+	?>
 
 
-
-
-
-</script>
-
-
-<script>
-
-$('.closemessage').click(function(){
-
-
-	document.getElementById("message_area").innerHTML=<?php $_SESSION['success']=NULL?> " " ;
-
-
-});
-
-
-
-</script>
-
-		</body>
-
-
-
-
-
-</html>
+</body>

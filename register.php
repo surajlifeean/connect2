@@ -33,6 +33,7 @@ if(isset($_FILES['profilepic'])){
 	
 	$ext_allowed=['png','jpg','jpeg'];
 
+if($_FILES['profilepic']['size']!=0){
 	if(in_array($ext,$ext_allowed)==false){
 
 		$_SESSION['errormessage']="Plz, Upload An Image!";
@@ -41,11 +42,13 @@ if(isset($_FILES['profilepic'])){
 
 
 	}
+}
 
 	$newfilename=date("YmdHis").".".$ext;
 	
 	if(empty($error)==true){
 		move_uploaded_file($filetemp,'images/'.$newfilename);
+		
 
 try{
 

@@ -39,8 +39,8 @@
                             </a>
                             <span class="visible-xs"> <span class="text-muted">5842 Hillcrest Rd</span><br/></span>
 
-                        <?php    if($user['gender']=='girl'){
-?>
+                           <?php    if($user['gender']=='girl'){
+                                ?>
                             <span class="fa fa-female text-muted c-info" data-toggle="tooltip" title=She></span>
 <?php                            }
 

@@ -33,4 +33,40 @@ footer p {
     margin: 0px;
     line-height: 100%;
 }
+
+.chat .message-field{
+
+    height: 300px;
+    overflow: scroll;
+    border: 1px solid #333;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    
+}
+
+.chat .message-field .messager{
+
+    text-align: right;
+    background-color: #e4faf9;
+    border-radius: 5px;
+    margin-bottom: 2px;
+
+
+}
+
+
+.chat .message-field .messages{
+
+  
+    background-color: #f2ebcd;
+    border-radius: 5px;
+    margin-bottom: 2px;
+
+
+}
+
+
+
 </style>

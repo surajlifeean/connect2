@@ -1,43 +1,70 @@
+<?php
 
 
 
- <div class="row profile">
+$stmt=$conn->prepare("select * from user where id='".$_SESSION['user_id']."'");
+							$stmt->execute();
+							$users=$stmt->fetchAll();
+
+
+?>
+
+
+
 		<div class="col-md-4">
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
+
+
+
+				<?php 
+
+
+					foreach ($users as $user) {
+	# code...
+
+
+				?>
 				<div class="profile-userpic">
-					<img src="http://localhost/connect2/images/<?php echo $_SESSION['image_name'] ?>" class="img-responsive" alt="">
+					<img src="http://localhost/connect2/images/<?php echo $user['profilepic'] ?>" class="img-responsive" alt="">
 				</div>
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name">
 						 <?php
-       					 echo $_SESSION['user_name'];
+       					 echo $user['name'];
        					   ?>
 					</div>
 					<div class="profile-usertitle-job">
 						 <?php
-       					 echo $_SESSION['profession'];
+       					 echo $user['profession'];
        					   ?>
 					</div>
 				</div>
+
+
+				<?php
+					}
+
+
+				?>
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
 				<div class="profile-userbuttons">
 					<!-- <button type="button" class="btn btn-success btn-sm">Follow</button> -->
-					<button type="button" class="btn btn-danger btn-sm">Edit Profile</button>
+					<a href="http://localhost/connect2/editprofile.php?id=<?php echo $_SESSION['user_id']  ?>" type="button" class="btn btn-danger btn-sm">Edit Profile</a>
 				</div>
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li class="active">
-							<a href="#">
+							<a href="http://localhost/connect2/requestsentlist.php?id=<?php echo $_SESSION['user_id'] ?>">
 							<i class="glyphicon glyphicon-home"></i>
 							
 
-								Friend Requests
+								Friend Requests Sent
 								<?php
 
 								include('friendrequest.php');
@@ -48,6 +75,8 @@
 
 <?php 
 echo count($allrequests);
+
+
 ?>
 
 
@@ -62,9 +91,9 @@ echo count($allrequests);
 							 </a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="http://localhost/connect2/requestlist.php?id=<?php echo $_SESSION['user_id'] ?>">
 							<i class="glyphicon glyphicon-user"></i>
-							Account Settings </a>
+							Friend Request Received </a>
 						</li>
 						<li>
 							<a href="#" target="_blank">
@@ -81,10 +110,6 @@ echo count($allrequests);
 				<!-- END MENU -->
 			</div>
 		</div>
-		<div class="col-md-8">
-            <div class="profile-content">
-			   Some user related content goes here...
-            </div>
-		</div>
-	</div>
+		
+	
 
